@@ -4,7 +4,7 @@ import schema.PetaSkySchema
 
 object SparkTPApp2 {
 
-  val compte = "ecoquery"
+  val compte = "toto" // Changer en utilisant votre login
 
   def countByObjectId(inputFilename: String, sc: SparkContext): RDD[(String, Long)] = {
     sc.textFile(inputFilename)
@@ -28,7 +28,7 @@ object SparkTPApp2 {
       }
     } else {
       println("Usage: spark-submit --class SparkTPApp2 /home/" + compte + "/SparkTPApp-correction-assembly-1.0.jar " +
-        "hdfs:///user/" + compte + "/fichier-a-lire.csv " +
+        "hdfs:///user/" + compte + "/repertoire-donnees " +
         "[hdfs:///user/" + compte + "/repertoire-resultat]")
     }
   }
