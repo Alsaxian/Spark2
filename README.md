@@ -57,4 +57,10 @@ Comme souligné plus haut la première version du programme reste très approxim
 * Prendre en compte correctement la géométrie des coordonnées célestes.
 * En remarquant que les observations au bord d'une case peuvent être considérées comme proches des observations d'une autre case, il faudrait dupliquer ces observations dans le bloc de cette autre case.
 * Certaines zones du ciel euvent être plus chargées que d'autres et la géométrie de la grille peut être imparfaite. On peut donc être intéressé à rediviser certaines cases trop chargées.
+* Écrire une requête qui utilise le partionnement (par exemple qui liste toutes les observations à une certaine distance d'une observation donnée).
 * Il est possible de proposer votre propre amélioration.
+
+## Liens utiles
+
+* L'utilitaire [`screen`](https://en.wikipedia.org/wiki/GNU_Screen) permet (entre autres) de conserver un shell actif tout en se déconnectant ([quickref](http://aperiodic.net/screen/quick_reference))
+* Pour sauver le contenu d'un RDD dans plusieurs fichiers, on peut suivre les indications mentionnées dans la deuxième réponse de [cette question sur Stackoverflow](https://stackoverflow.com/questions/23995040/write-to-multiple-outputs-by-key-spark-one-spark-job). Attention, cela ne fonctionne bien que lorque la clé et la valeur sont des `String`. Il faut donc éventuellement penser à convertir avant d'écrire via `saveAsHadoopFile`.
