@@ -1,5 +1,6 @@
 import org.apache.hadoop.io.NullWritable
 import org.apache.hadoop.mapred.lib.MultipleTextOutputFormat
+import org.apache.spark.HashPartitioner
 import org.apache.spark.rdd.RDD
 
 object TIW6RDDUtils {
@@ -20,11 +21,13 @@ object TIW6RDDUtils {
     * Ecrit le contenu d'un RDD consitué d'éléments qui sont des paires (clé,valeur) dans différent fichiers.
     * Le nom du fichier ou chaque valeur est écrite est donné par la clé.
     *
-    * @param rddToWrite
-    * @param dir
+    * @param rddToWrite le rddAEcrire dans HDFS
+    * @param dir        le répertoire qui contiendra les fichiers pour chaque case
+    * @param nbCases    le nombre approximatif de cases à écrire
     */
-  def writePairRDDToHadoopUsingKeyAsFileName(rddToWrite: RDD[(String, String)], dir: String): Unit = {
+  def writePairRDDToHadoopUsingKeyAsFileName(rddToWrite: RDD[(String, String)], dir: String, nbCases: Int): Unit = {
     rddToWrite
+      .partitionBy(new HashPartitioner(nbCases))
       .saveAsHadoopFile(dir, classOf[String], classOf[String], classOf[RDDMultipleTextOutputFormat])
   }
 }
