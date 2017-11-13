@@ -3,6 +3,10 @@
 L'objectif de ce TP est de pousser un peu plus loin l'utilisation de Spark.
 Le code fourni dans ce TP correspond au premier TP Spark, jusqu'à la troisième application Spark (Calcul de valeurs extrémales) inclue.
 
+> Ce TP manipulant éventuellement de grosses données il faut:
+> * Supprimer les répertoires HDFS inutiles: `hdfs dfs -rm -r repertoire-a-supprimer`
+> * Lancer ensuite `hdfs dfs -expunge` pour vider régulièrement la poubelle HDFS
+
 ## Rendu
 
 Ce TP est à rendre pour le **19/11/2017**.
