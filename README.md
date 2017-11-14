@@ -10,6 +10,8 @@ Le code fourni dans ce TP correspond au premier TP Spark, jusqu'à la troisième
 L'utilitaire [`screen`](https://en.wikipedia.org/wiki/GNU_Screen) permet (entre autres) de conserver un shell actif tout en se déconnectant ([quickref](http://aperiodic.net/screen/quick_reference)).
 Il ne faut pas hésiter à l'utiliser quand on lance des jobs longs sur le cluster. 
 
+Le [projet contenant cet énoncé](https://forge.univ-lyon1.fr/EMMANUEL.COQUERY/tp-spark2-2017) peut être utilisé comme point de départ.
+Il reprend en partie le TP précédent.
 
 ## Rendu
 
