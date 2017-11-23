@@ -3,8 +3,10 @@ import java.lang.Math.{max, min}
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
 
+import schema.PetaSkySchema
+
 object SparkTPApp3 {
-  val compte = "toto" // changer avec votre login
+  val compte = "p1715490" // changer avec votre login
 
   // Version avec une case class
   case class AP3Agg(objectId: String, count: Long, lastSrc: String,

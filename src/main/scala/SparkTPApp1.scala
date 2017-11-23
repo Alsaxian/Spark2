@@ -2,7 +2,7 @@ import org.apache.spark.{SparkConf, SparkContext}
 
 object SparkTPApp1 {
 
-  val compte = "toto" // changer en utilisant votre login
+  val compte = "p1715490" // changer en utilisant votre login
 
   def compteAB(logFile: String, sc: SparkContext): (Long, Long) = {
     val logData = sc.textFile(logFile, 2).cache()

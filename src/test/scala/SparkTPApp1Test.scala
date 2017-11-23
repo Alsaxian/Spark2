@@ -15,8 +15,10 @@ class SparkTPApp1Test extends FunSuite with BeforeAndAfter {
 
   test("compte a et b") {
     val (nA, nB) = SparkTPApp1.compteAB("README.md", sc)
-    //assert(nA == 98, ", mauvais nombre de a") // change avec README.md
-    //assert(nB == 47, ", mauvais nombre de b")
+
+    println("\n nA est : " + nA + " et nB est : " + nB)
+    assert(nA == 53, ", mauvais nombre de a") // change avec README.md
+    assert(nB == 23, ", mauvais nombre de b")
   }
 
   // exécuté après chaque test

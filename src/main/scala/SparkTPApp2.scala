@@ -4,7 +4,7 @@ import schema.PetaSkySchema
 
 object SparkTPApp2 {
 
-  val compte = "toto" // Changer en utilisant votre login
+  val compte = "p1715490" // Changer en utilisant votre login
 
   def countByObjectId(inputFilename: String, sc: SparkContext): RDD[(String, Long)] = {
     sc.textFile(inputFilename)
