@@ -77,7 +77,8 @@ les deux côté de façon identique. Ainsi, la `class Grille` suivante
       (limites.maxDecl - limites.minDecl) / nbCasesRacineCarre
   }
 ```
-va découper la zone en des cases à 7*7 avec un nombre minimum de cases 40, qui ne renvoie pas vraiment des cases en tant qu'objets mais plutôt deux partitionnements
+va découper la zone en des cases de 7*7 avec un nombre minimum de cases égal à 40, 
+qui ne renvoie pas vraiment des cases en tant qu'objets de scala mais plutôt deux partitionnements
 de côtés, pour raison d'efficacité de calcul (sinon, on devra comparer les sources avec chaque case pour trouver enfin sa "maison").  
   
 Ensuite la fonction `dansQuelleCaseVaisJe` permet de décider la bonne case pour une source en fonction de ses coordonnées
