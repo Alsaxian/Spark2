@@ -96,6 +96,6 @@ Ensuite la fonction `dansQuelleCaseVaisJe` permet de décider la bonne case pour
     i.toString + "." + j.toString
   }
 ```
-et de nommer cette case de façon uniforme par ses ordres sur els deux axes.
+et de nommer les cases de façon uniforme par leurs ordres sur les deux axes.
 
 
