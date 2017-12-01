@@ -1,14 +1,14 @@
 # Compte-rendu du second TP Spark
 
  
-Autheur : Xian YANG
-Promotion : Data Science Math
-Date : 01 décembre 2017
+Autheur : Xian YANG  
+Promotion : Data Science Math  
+Date : 01 décembre 2017  
 
  &ensp; &ensp; 
  &ensp; &ensp; 
   
-## I. Partie principale 1 : calcul des valeurs extrémales
+## I. Partie principale : calcul des valeurs extrémales
 
 Dans un premier temps, on travaille dans le contexte d'ignoration de la géométrie astronomique. En d'autres termes, on considère les RA et les Decl comme étant
 des coordonnées cartésiennes orthogonales, où leur unités n'ont aucun lien l'une avec l'autre. Ce qui fait que lors du partitionnement en cases, on peut tranquillement 
