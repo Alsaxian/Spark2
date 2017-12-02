@@ -12,7 +12,7 @@ Date : 01 décembre 2017
 
 Dans un premier temps, on travaille dans le contexte d'ignoration de la géométrie astronomique. En d'autres termes, on considère les RA et les Decl comme étant
 des coordonnées cartésiennes orthogonales, où leur unités n'ont aucun lien l'une avec l'autre. Ce qui fait que lors du partitionnement en cases, on peut tranquillement 
-partir du point de vu que la zone entière observée est un carré et la découper de façon équilibre dans les deux axes. Ce point de vue n'est pas tout à fait juste et se
+partir du point de vue que la zone entière observée est un carré et la découper de façon équilibre dans les deux axes. Ce point de vue n'est pas tout à fait juste et se
 verra améliorer dans la partie III.  
   
 Le premier but de ce TP est de calculer les valeurs extrémales de la zone entière observée. Pour le faire, une idée en parallélisme est de regrouper 
@@ -96,6 +96,6 @@ Ensuite la fonction `dansQuelleCaseVaisJe` permet de décider la bonne case pour
     i.toString + "." + j.toString
   }
 ```
-et de nommer les cases de façon uniforme par leurs ordres sur les deux axes.
+et de nommer les cases de façon uniforme par leurs ordres sur les deux axes, p. ex. "2.3".
 
 
