@@ -96,6 +96,38 @@ Ensuite la fonction `dansQuelleCaseVaisJe` permet de décider la bonne case pour
     i.toString + "." + j.toString
   }
 ```
-et de nommer les cases de façon uniforme par leurs ordres sur les deux axes, p. ex. "2.3".
+et de nommer les cases de façon uniforme par leurs ordres sur les deux axes, p. ex. "2.3".  
+  
+On a également besoin d'une fonction qui lit une ligne d'observation brute et en extraire les valeurs RA et Decl
+```scala
+  def garderSeulementRaDecl (input: Array[String]): Array[Double] = {
+    Array(input(PetaSkySchema.s_ra).toDouble, input(PetaSkySchema.s_decl).toDouble)
+  }
+```
+et finalement d'une fonction qui rassemble toutes celles-là en faisant du MapReduce et en retournant un fichier par case à la sortie, 
+grâce à la fonction d'écriture `writePairRDDToHadoopUsingKeyAsFileName`, fournie dans le fichier source `TIW6RDDUtils`.
+```scala
+  def reformerEnPairRDD (inputDir: String, sc: SparkContext, grille: Grille)
+    : RDD[(String, String)] =
+    sc.textFile(inputDir)
+      .map(_.split(",").map(_.trim)) // transformer chaque ligne en un tableau de String)
+      .map(garderSeulementRaDecl)
+      .map(arr => (dansQuelleCaseVaisJe(arr(0),arr(1),grille), arr(0).toString + "," + arr(1).toString))
+```
+A remarquer ici qu'on a dû transformer chaque enregistrement en un n-uplet scala de longueur 2, dont le premier élément est la clé, i.g.
+le nom de la case à laquelle il appartient.  
+  
 
+Au final on écrit une méthode main qui appelle la fonction `reformerEnPairRDD` et résume la taille (en nombre de lignes) de chaque fichier
+à la sortie, à travers une fonction telle que
+```scala
 
+```
+ce qui donne sur le serveur de Spark le résultat suivant
+```sh
+```
+```
+```
+Insérer ici un histogramme. (see https://cs.nyu.edu/courses/fall09/V22.0002-002/programs/programs16-0002/Histogram.html)
+
+## III. Partie extensions
