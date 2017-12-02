@@ -25,6 +25,8 @@ class SparkTPApp6ExtentionsTest1 extends FunSuite with BeforeAndAfter  {
     dansQuellesCasesVaisJe(351, 3.0).foreach(println)
     dansQuellesCasesVaisJe(10, 3.0).foreach(println)
     dansQuellesCasesVaisJe(11, 3.0).foreach(println)
+    dansQuellesCasesVaisJe(111, 3.0).foreach(println)
+    dansQuellesCasesVaisJe(211, 3.0).foreach(println)
   }
 
   // exécuter après chaque test

@@ -1,6 +1,6 @@
 import SparkTPApp5Partitionnement.{Grille, reformerEnPairRDD, garderSeulementRaDecl, dansQuelleCaseVaisJe}
 import SparkTPApp4Zone.Zone
-import TIW6RDDUtils.writePairRDDToHadoopUsingKeyAsFileName
+// import TIW6RDDUtils.writePairRDDToHadoopUsingKeyAsFileName
 import org.apache.spark.{SparkConf, SparkContext}
 import org.scalatest.{BeforeAndAfter, FunSuite}
 import scala.io.Source
