@@ -15,6 +15,7 @@ object SparkTPApp4Zone {
       Zone(min(minRA, b.minRA), max(maxRA, b.maxRA),
         min(minDecl, b.minDecl), max(maxDecl, b.maxDecl))
     }
+
     def misEnChaineCarac: String = {
       "minRA : %f, maxRA : %f, minDecl : %f, maxDecl : %f"
         .format(minRA, maxRA, minDecl, maxDecl)
