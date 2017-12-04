@@ -224,7 +224,7 @@ __Conclusion : En comparant le histogramme du fichier `002` avec celui du fichie
 uniforme alors que celle dans le deuxième est très variée. Ceci peut être dû au fait que la zone étudiée n'est pas, comme on l'imaginait, une bande étroite 
 (0, 360) * (-4, 4). Mais en effet, ça peut être une petite zone où l'intervalle des RA dépasse la "ligne de changement de date" (RA = 0) ! Du coup, dans le premier 
 fichier les données sont situées uniquement d'un seul côté de cette ligne d'où une distribution uniforme, tant dis que dans le deuxième fichier c'est le cas contraire,
-d'où beaucoup de vide dans l'espace "au milieu".
+d'où beaucoup de vide dans l'espace "au milieu".__
 
 ## III. Partie extensions
 
