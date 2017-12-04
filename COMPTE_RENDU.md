@@ -16,7 +16,7 @@ partir du point de vue que la zone entière observée est un carré et la décou
 verra améliorer dans la partie III.  
   
 Le premier but de ce TP est de calculer les valeurs extrémales de la zone entière observée. Pour le faire, une idée en parallélisme est de regrouper 
-les sources en zones puis les zones en plus grandes etc. Ainsi, il convient de définir d'abord une `case classe Zone`
+les sources en zones puis les zones en plus grandes etc. Ainsi, il convient de définir d'abord une `case classe Zone` dans le 4ème fichier source `SparkTPApp4Zone.scala`
 ```scala
   case class Zone(minRA: Double, maxRA: Double,
                   minDecl: Double, maxDecl: Double) {
@@ -51,6 +51,24 @@ Finalement, une `map` sert à convertir tous les points en `Zone` suivi d'une `r
 ```
 Pour effectuer une vérification intermédiaire on pourrait choisir de mettre une méthode `main` qui affiche à l'écran ces quatre valeurs obtenues où les stocke dans 
 un fichier. 
+```scala
+  def main(args: Array[String]): Unit = {
+    if (args.length >= 3) {
+      val conf = new SparkConf().setAppName("SparkTPApp4Zone-" + compte)
+      val sc = new SparkContext(conf)
+      val result =
+        if ("--tuple" == args(0))
+          "What ?"
+        else
+          calculMaxMin(args(1), sc).misEnChaineCarac
+      println(result)
+    } else {
+      println("Usage: spark-submit --class SparkTPApp4Zone /home/" + compte + "/SparkTPApp-correction-assembly-1.0.jar " +
+        "[ --caseClass | --tuple ] " +
+        "hdfs:///user/" + compte + "/repertoire-donnees")
+    }
+  }
+```
 
 __Attention : comme le serveur était en panne ce dernier temps, il ne me permet même plus de réexécuter cette partie du programme sur un seul fichier de 80 Mo !
 Donc je ne peux pas donner de résultat exact ici, mais dans mon mémoire, lorsque je l'avais exécuté il y a très longtemps où le serveur marchait encore, j'avais comme
@@ -61,7 +79,7 @@ Maintenant on s'intéresse au découpage de la grande zone observée en petites 
 pas 128 Mo. Etant donné qu'on en a 5 Go en total, il nous faut donc au moins (5 / 0,128 approx.=) 40 cases. A noter qu'ici, on demande à l'utilisateur
 de saisir ce nombre à clavier au moment de la soumise de requête, tout dans l'eprit de lui donner la liberté de géstion de la taille des fichiers. 
 (Ce ne sera plus le cas dans la partie suivante. ) Comme expliqué plus haut, on considère pour le moment que la zone entière a pour forme un carré, dont on découpe
-les deux côté de façon identique. Ainsi, la `class Grille` suivante
+les deux côté de façon identique. Ainsi, dans le 5ème fichier source `SparkTPApp5Partitionnement.scala`, la `class Grille` suivante
 ```scala
   case class Grille (nbMinCases: Int, limites: Zone) {
     val nbCasesRacineCarre: Int =
@@ -203,3 +221,4 @@ Ici, le numéro devant la flèche est le nom du fichier, le nombre d'étoile rep
 Le cas avec aucune étoile signifie qu'il y a une seule ligne dans le fichier.
 
 ## III. Partie extensions
+
