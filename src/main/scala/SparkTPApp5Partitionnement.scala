@@ -1,4 +1,4 @@
-import java.lang.Math.{ceil, sqrt}
+import java.lang.Math.{ceil, sqrt, log10}
 
 import SparkTPApp4Zone.{Zone, calculMaxMin}
 
@@ -9,7 +9,6 @@ import org.apache.spark.rdd.RDD
 import schema.PetaSkySchema
 
 import TIW6RDDUtils.writePairRDDToHadoopUsingKeyAsFileName
-
 
 /**
   * Created by xian on 15.11.17.
@@ -65,7 +64,7 @@ object SparkTPApp5Partitionnement {
 
   def main(args: Array[String]): Unit = {
 
-    if (args.length >= 4) {
+    if (args.length >= 3) {
       val conf = new SparkConf().setAppName("SparkTPApp5Partitionnement-" + compte)
       val sc = new SparkContext(conf)
 
@@ -80,6 +79,10 @@ object SparkTPApp5Partitionnement {
 
       writePairRDDToHadoopUsingKeyAsFileName(RDDaEcrire, outputDir,
         maGrille.nbCasesRacineCarre * maGrille.nbCasesRacineCarre)
+
+
+      RDDaEcrire.countByKey().foreach {case (key, value) => println (key + "-->" +
+        "*" * ceil(log10(value)).toInt)}
     }
 
 
