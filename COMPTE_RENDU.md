@@ -72,7 +72,7 @@ un fichier.
 
 __Attention : comme le serveur était en panne ce dernier temps, il ne me permet même plus de réexécuter cette partie du programme sur un seul fichier de 80 Mo !
 Donc je ne peux pas donner de résultat exact ici, mais dans mon mémoire, lorsque je l'avais exécuté il y a très longtemps où le serveur marchait encore, j'avais comme
-résultat que le min des RA est un peu plus que 0, le max des RA un peu moins que 360 et que le min des Decl est un peu plus que -4, le min des RA un peu moins que 4.__
+résultat que le min des RA est un peu plus que 0, le max des RA un peu moins que 360 et que le min des Decl est un peu plus que -7, le min des RA un peu moins que 7.__
 
  &ensp; &ensp; 
  &ensp; &ensp; 
