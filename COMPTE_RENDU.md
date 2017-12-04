@@ -1,7 +1,7 @@
 # Compte-rendu du second TP Spark
 
  
-Auteur : Xian YANG  
+Auteurs : AUJOGUE JEAN-BAPTISTE p0400503 et YANG XIAN p1715490  
 Promotion : Data Science Math  
 Date : 01 décembre 2017  
 
@@ -72,8 +72,11 @@ un fichier.
 
 __Attention : comme le serveur était en panne ce dernier temps, il ne me permet même plus de réexécuter cette partie du programme sur un seul fichier de 80 Mo !
 Donc je ne peux pas donner de résultat exact ici, mais dans mon mémoire, lorsque je l'avais exécuté il y a très longtemps où le serveur marchait encore, j'avais comme
-résultat que le min des RA est un peu plus que 0, le max des RA un peu moins que 360 et que le min des Decl est un peu plus que -4, le min des RA un peu moins que 4.__
+résultat que le min des RA est un peu plus que 0, le max des RA un peu moins que 360 et que le min des Decl est un peu plus que -7, le min des RA un peu moins que 7.__
 
+ &ensp; &ensp; 
+ &ensp; &ensp; 
+  
 ## II. Partie principale : Mise en grille de la zone et partitionnement des sources
 Maintenant on s'intéresse au découpage de la grande zone observée en petites cases, afin de partitionner les sources de manière que chaque fichier de sortie ne dépasse
 pas 128 Mo. Etant donné qu'on en a 5 Go en total, il nous faut donc au moins (5 / 0,128 approx.=) 40 cases. A noter qu'ici, on demande à l'utilisateur
@@ -220,11 +223,14 @@ sur des fichiers seuls. Au final, pour les fichiers `002` et `062` les histogram
 Ici, le numéro devant la flèche est le nom du fichier, le nombre d'étoile représente le nombre de ligne du fichier de sortie pris de logarithme à la base 10.
 Le cas avec aucune étoile signifie qu'il y a une seule ligne dans le fichier.  
   
-__Conclusion : En comparant le histogramme du fichier `002` avec celui du fichier `062`, on voit que la distribution des observations dans le premier est plutôt 
-uniforme alors que celle dans le deuxième est très variée. Ceci peut être dû au fait que la zone étudiée n'est pas, comme on l'imaginait, une bande étroite 
+__Conclusion : En comparant l'histogramme du fichier `002` avec celui du fichier `062`, on voit que la distribution des observations dans le premier est plutôt 
+uniforme alors que celle dans le dernier est très variée. Ceci peut être dû au fait que la zone étudiée n'est pas, comme on l'imaginait, une bande étroite 
 (0, 360) * (-4, 4). Mais en effet, ça peut être une petite zone où l'intervalle des RA dépasse la "ligne de changement de date" (RA = 0) ! Du coup, dans le premier 
-fichier les données sont situées uniquement d'un seul côté de cette ligne d'où une distribution uniforme, tant dis que dans le deuxième fichier c'est le cas contraire,
+fichier les données sont situées uniquement d'un seul côté de cette ligne d'où une distribution uniforme, tant dis que dans le dernier fichier c'est le cas contraire,
 d'où beaucoup de vide dans l'espace "au milieu".__
 
+ &ensp; &ensp; 
+ &ensp; &ensp; 
+  
 ## III. Partie extensions
 
