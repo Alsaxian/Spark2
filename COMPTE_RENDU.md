@@ -150,7 +150,8 @@ Au final on écrit une méthode main qui appelle la fonction `reformerEnPairRDD`
     }
 ```
 A cause de la panne du serveur de Spark, je n'ai pas pu obtenir le résultat sur l'ensemble des 5 Go d'observation. En revanche j'ai réussi à exécuter ce script 
-sur des fichiers seuls. Au final, pour le fichier `002` et `062` les histogrammes sont respectivement comme suit 
+sur des fichiers seuls. Au final, pour le fichier `002` et `062` les histogrammes sont respectivement comme suit  
+`002` :
 ```sh
 6.3-->****
 4.4-->****
@@ -185,6 +186,7 @@ sur des fichiers seuls. Au final, pour le fichier `002` et `062` les histogramme
 4.7-->****
 5.4-->***
 ```
+`062` : 
 ```sh
 1.2-->****
 7.3-->***
