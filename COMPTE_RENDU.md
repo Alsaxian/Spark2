@@ -50,11 +50,12 @@ Finalement, une `map` sert à convertir tous les points en `Zone` suivi d'une `r
   }
 ```
 Pour effectuer une vérification intermédiaire on pourrait choisir de mettre une méthode `main` qui affiche à l'écran ces quatre valeurs obtenues où les stocke dans 
-un fichier. Le résultat est : 
-```sh
-$
+un fichier. 
 
-```
+_Attention : comme le serveur était en panne ce dernier temps, il ne me permet même plus de réexécuter cette partie du programme sur un seul fichier de 80 Mo !
+Donc je ne peux pas donner de résultat exact ici, mais dans mon mémoire, lorsque je l'avais exécuté il y a très longtemps où le serveur marchait encore, j'avais comme
+résultat les RA entre environ 0 et 360 et les Decl entre environ -4 et 4._
+
 ## II. Partie principale : Mise en grille de la zone et partitionnement des sources
 Maintenant on s'intéresse au découpage de la grande zone observée en petites cases, afin de partitionner les sources de manière que chaque fichier de sortie ne dépasse
 pas 128 Mo. Etant donné qu'on en a 5 Go en total, il nous faut donc au moins (5 / 0,128 approx.=) 40 cases. A noter qu'ici, on demande à l'utilisateur
@@ -119,15 +120,84 @@ le nom de la case à laquelle il appartient.
   
 
 Au final on écrit une méthode main qui appelle la fonction `reformerEnPairRDD` et résume la taille (en nombre de lignes) de chaque fichier
-à la sortie, à travers une fonction telle que
+à la sortie, à travers un histogramme tel que
 ```scala
+  def main(args: Array[String]): Unit = {
 
+    if (args.length >= 3) {
+      val conf = new SparkConf().setAppName("SparkTPApp5Partitionnement-" + compte)
+      val sc = new SparkContext(conf)
+
+      val nbMinCases = args(0).toInt
+      val inputDir = args(1)
+      val outputDir = args(2)
+
+      val maGrille = Grille(nbMinCases, calculMaxMin(inputDir, sc))
+      val RDDaEcrire = reformerEnPairRDD(inputDir, sc, maGrille)
+
+      writePairRDDToHadoopUsingKeyAsFileName(RDDaEcrire, outputDir,
+        maGrille.nbCasesRacineCarre * maGrille.nbCasesRacineCarre)
+
+      RDDaEcrire.countByKey().foreach {case (key, value) => println (key + "-->" +
+        "*" * ceil(log10(value)).toInt)}
+    }
+
+    else {
+      println("Usage: spark-submit --class SparkTPApp5Partitionnement /home/" + compte + "/SparkTPApp-correction-assembly-1.0.jar " +
+        "nbMinCases " +
+        "hdfs:///user/" + compte + "/repertoire-donnees " + /* half useful for the moment */
+        "hdfs:///user/" + compte + "/repertoire-resultat")
+    }
 ```
-ce qui donne sur le serveur de Spark le résultat suivant
+A cause de la panne du serveur de Spark, je n'ai pas pu obtenir le résultat sur l'ensemble des 5 Go d'observation. En revanche j'ai réussi à exécuter ce script 
+sur des fichiers seuls. Au final, pour le fichier `002` et `062` les histogrammes sont respectivement comme suit 
 ```sh
+6.3-->****
+4.4-->****
+3.7-->****
+7.3-->****
+4.5-->****
+5.6-->****
+3.4-->****
+6.4-->****
+0.0-->
+2.7-->****
+7.2-->*****
+2.4-->****
+3.5-->****
+1.6-->****
+5.7-->****
+1.5-->****
+4.6-->****
+1.4-->****
+2.6-->****
+6.1-->****
+7.1-->****
+6.5-->
+1.7-->****
+2.5-->****
+5.5-->****
+3.6-->****
+7.4-->****
+6.2-->****
+7.0-->
+6.6-->***
+4.7-->****
+5.4-->***
 ```
+```sh
+1.2-->****
+7.3-->***
+0.0-->
+7.2-->*****
+1.6-->****
+7.5-->*****
+7.1-->****
+1.7-->*****
+1.3-->*
+7.0-->
 ```
-```
-Insérer ici un histogramme. (see https://cs.nyu.edu/courses/fall09/V22.0002-002/programs/programs16-0002/Histogram.html)
+Ici, le numéro devant la flèche est le nom du fichier, le nombre d'étoile représente le nombre de ligne du fichier de sortie pris de logarithme à base 10.
+Le cas avec aucune étoile signifie qu'il y a une seule ligne dans le fichier.
 
 ## III. Partie extensions
