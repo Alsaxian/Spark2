@@ -150,7 +150,7 @@ Au final on écrit une méthode main qui appelle la fonction `reformerEnPairRDD`
     }
 ```
 A cause de la panne du serveur de Spark, je n'ai pas pu obtenir le résultat sur l'ensemble des 5 Go d'observation. En revanche j'ai réussi à exécuter ce script 
-sur des fichiers seuls. Au final, pour le fichier `002` et `062` les histogrammes sont respectivement comme suit  
+sur des fichiers seuls. Au final, pour les fichiers `002` et `062` les histogrammes sont respectivement comme suit  
 `002` :
 ```sh
 6.3-->****
@@ -199,7 +199,7 @@ sur des fichiers seuls. Au final, pour le fichier `002` et `062` les histogramme
 1.3-->*
 7.0-->
 ```
-Ici, le numéro devant la flèche est le nom du fichier, le nombre d'étoile représente le nombre de ligne du fichier de sortie pris de logarithme à base 10.
+Ici, le numéro devant la flèche est le nom du fichier, le nombre d'étoile représente le nombre de ligne du fichier de sortie pris de logarithme à la base 10.
 Le cas avec aucune étoile signifie qu'il y a une seule ligne dans le fichier.
 
 ## III. Partie extensions
