@@ -52,9 +52,9 @@ Finalement, une `map` sert à convertir tous les points en `Zone` suivi d'une `r
 Pour effectuer une vérification intermédiaire on pourrait choisir de mettre une méthode `main` qui affiche à l'écran ces quatre valeurs obtenues où les stocke dans 
 un fichier. 
 
-_Attention : comme le serveur était en panne ce dernier temps, il ne me permet même plus de réexécuter cette partie du programme sur un seul fichier de 80 Mo !
+__Attention : comme le serveur était en panne ce dernier temps, il ne me permet même plus de réexécuter cette partie du programme sur un seul fichier de 80 Mo !
 Donc je ne peux pas donner de résultat exact ici, mais dans mon mémoire, lorsque je l'avais exécuté il y a très longtemps où le serveur marchait encore, j'avais comme
-résultat les RA entre environ 0 et 360 et les Decl entre environ -4 et 4._
+résultat les RA entre environ 0 et 360 et les Decl entre environ -4 et 4.__
 
 ## II. Partie principale : Mise en grille de la zone et partitionnement des sources
 Maintenant on s'intéresse au découpage de la grande zone observée en petites cases, afin de partitionner les sources de manière que chaque fichier de sortie ne dépasse
