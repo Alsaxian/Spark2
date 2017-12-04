@@ -120,7 +120,7 @@ le nom de la case à laquelle il appartient.
   
 
 Au final on écrit une méthode main qui appelle la fonction `reformerEnPairRDD` et résume la taille (en nombre de lignes) de chaque fichier
-à la sortie, à travers un histogramme tel que
+à la sortie, à travers un histogramme.
 ```scala
   def main(args: Array[String]): Unit = {
 
