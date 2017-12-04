@@ -1,7 +1,7 @@
 # Compte-rendu du second TP Spark
 
  
-Auteur : Xian YANG  
+Auteurs : AUJOGUE JEAN-BAPTISTE p0400503 et YANG XIAN p1715490  
 Promotion : Data Science Math  
 Date : 01 décembre 2017  
 
@@ -74,6 +74,9 @@ __Attention : comme le serveur était en panne ce dernier temps, il ne me permet
 Donc je ne peux pas donner de résultat exact ici, mais dans mon mémoire, lorsque je l'avais exécuté il y a très longtemps où le serveur marchait encore, j'avais comme
 résultat que le min des RA est un peu plus que 0, le max des RA un peu moins que 360 et que le min des Decl est un peu plus que -4, le min des RA un peu moins que 4.__
 
+ &ensp; &ensp; 
+ &ensp; &ensp; 
+  
 ## II. Partie principale : Mise en grille de la zone et partitionnement des sources
 Maintenant on s'intéresse au découpage de la grande zone observée en petites cases, afin de partitionner les sources de manière que chaque fichier de sortie ne dépasse
 pas 128 Mo. Etant donné qu'on en a 5 Go en total, il nous faut donc au moins (5 / 0,128 approx.=) 40 cases. A noter qu'ici, on demande à l'utilisateur
@@ -226,5 +229,8 @@ uniforme alors que celle dans le dernier est très variée. Ceci peut être dû 
 fichier les données sont situées uniquement d'un seul côté de cette ligne d'où une distribution uniforme, tant dis que dans le dernier fichier c'est le cas contraire,
 d'où beaucoup de vide dans l'espace "au milieu".__
 
+ &ensp; &ensp; 
+ &ensp; &ensp; 
+  
 ## III. Partie extensions
 
