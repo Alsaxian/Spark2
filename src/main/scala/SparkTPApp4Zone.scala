@@ -1,8 +1,5 @@
 import java.lang.Math.{max, min}
-
-//import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
-
 import schema.PetaSkySchema
 
 /**
@@ -34,7 +31,6 @@ object SparkTPApp4Zone {
     sc.textFile(inputDir)
       .map(_.split(",").map(_.trim)) // transformer chaque ligne en un tableau de String)
       .map(convertirEnZone)
-      //.filter(_./*anything*/ != "NULL")
       .reduce(_ zone_englobante _)
   }
 
@@ -44,13 +40,10 @@ object SparkTPApp4Zone {
       val sc = new SparkContext(conf)
       val result =
         if ("--tuple" == args(0))
-          "What ?"//aggregateByObjectIdT(args(1), sc)
+          "What ?"
         else
           calculMaxMin(args(1), sc).misEnChaineCarac
       println(result)
-        //.map(r => "%s,%d,%s,%s,%s,%s,%s".format(r._1, r._2, r._3, r._4, r._5, r._6, r._7))
-        //.saveAsTextFile(args(2))
-
     } else {
       println("Usage: spark-submit --class SparkTPApp4Zone /home/" + compte + "/SparkTPApp-correction-assembly-1.0.jar " +
         "[ --caseClass | --tuple ] " +
