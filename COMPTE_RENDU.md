@@ -432,6 +432,9 @@ Maintenant un histogramme de distribution d'observations, est beaucoup plus unif
 On voit que premièrement, les nombres d'observations à la sortie ne dépasse pas 10.000, comme on le souhaitait. Deuxièmement, pour le fichier `062`, des `bis` 
 apparaissent à la sortie, signifiant la création de nouvelles cases au fur et à mesure.
 
+ &ensp; &ensp; 
+ &ensp; &ensp; 
+  
 ## Partie IV. Difficulté rencontrée dans ce TP
 C'est surtout que le serveur ne marchait pas pour les données entières !! Ceci a entraîné ce qu'on a cru pendant longtemps que la zone
 observée est une bande de 360 degré, puisque c'était difficile de vérifier dans l'intégralité. Du coup on a fait une autre version de
