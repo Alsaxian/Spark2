@@ -372,7 +372,7 @@ A noter que une structure `mutable` de case (ici : `ListBuffer`) est nécessaire
 ```
 Une copie complète de cette dernière version de code est annexée à la fin du rapport.  
    
-Maintenant un histogramme de distribution d'observations, est beaucoup plus uniforme. On liste ici les histogramme des mêmes fichiers originaux 
+Maintenant un histogramme de distribution d'observations, est beaucoup plus uniforme. On liste ici les histogrammes des mêmes fichiers originaux 
 `002` et `062` pour comparer  
 `002` : 
 ```scala
