@@ -369,10 +369,70 @@ A noter que une structure `mutable` de case (ici : `ListBuffer`) est nécessaire
     grille.Cases += Case(leftRA, rightRA, upperDecl, lowerDecl, nom)
   }
 ```
-On copie complète de cette dernière version de code est annexée à la fin du rapport.
+Une copie complète de cette dernière version de code est annexée à la fin du rapport.  
+   
+Maintenant un histogramme de distribution d'observations, est beaucoup plus uniforme. On liste ici les histogramme des mêmes fichiers originaux 
+`002` et `062` pour comparer  
+`002` : 
+```scala
+5.2-->****
+6.3-->**
+4.2-->****
+4.4-->****
+6.0-->**
+2.3-->***
+4.5-->****
+5.6-->****
+3.1-->****
+3.4-->****
+5.3-->****
+6.4-->**
+3.0-->****
+4.1-->****
+2.4-->***
+3.5-->****
+2.0-->***
+4.6-->****
+4.0-->****
+3.3-->****
+2.6-->***
+6.1-->**
+6.5-->**
+2.1-->***
+5.1-->****
+3.2-->****
+2.5-->***
+5.5-->****
+3.6-->****
+6.2-->**
+4.3-->****
+5.0-->****
+6.6-->**
+2.2-->***
+5.4-->****
+```
+`062` : 
+```scala
+0.1-->****
+0.5bis-->****
+0.5-->****
+0.3bis-->****
+0.0-->****
+0.2bis-->****
+0.4-->****
+0.4bis-->****
+0.3-->****
+0.6bis-->****
+0.0bis-->****
+0.1bis-->****
+0.6-->****
+0.2-->****
+```
+On voit que premièrement, les nombres d'observations à la sortie ne dépasse pas 10.000, comme on le souhaitait. Deuxièmement, pour le fichier `062`, des `bis` 
+apparaissent à la sortie, signifiant la création de nouvelles cases au fur et à mesure.
 
 ## Partie IV. Difficulté rencontrée dans ce TP
-C'est surtout que le serveur ne marchait pas pour les données entières !! Ceci a entraîné ce que j'ai cru peadant longtemps que la zone
+C'est surtout que le serveur ne marchait pas pour les données entières !! Ceci a entraîné ce qu'on a cru pendant longtemps que la zone
 observée est une bande de 360 degré, puisque c'était difficile de vérifier dans l'intégralité. Du coup on a fait une autre version de
 programme pour les questions de l'extension basé sur ce fait. Mais au dernier moment où on se rendait compte de la "piège", il fallait tout 
 refaire.  
