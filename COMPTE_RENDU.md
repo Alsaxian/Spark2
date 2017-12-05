@@ -233,4 +233,88 @@ d'où beaucoup de vide dans l'espace "au milieu".__
  &ensp; &ensp; 
   
 ## III. Partie extensions
+Dans cette partie, on va répondre aux 3 questions :  
+  
+1. Quelle est la vraie géométrie astronomique est comment rendre notre partitionnement plus pertinent à cette géométrie ?
+2. Comment définir "être proche d'une case voisine" d'un point et comment l'affecter à plusieurs cases dans un contexte RDD ?
+3. Quand une case est trop remplie, que faire ?
+
+### 1. Quelle est la vraie géométrie astronomique est comment rendre notre partitionnement plus pertinent à cette géométrie ?
+La première partie de cette question est facile à répondre. Le système de coordonnées formé par RA et Decl c'est comme le shpère du globe :
+RA prend sa valeur dans [0, 360) mais quand il dépasse 360 ça recommence à 0. Decl prend sa valeur dans [-90, 90].  
+  
+Du coup, quand dans ce TP les valeurs extrémales de RA sont approximitivement resp. 0 et 360, ça nous a fait croire en premier lieu que la 
+zone observée est une bande étroite qui entourne le sphère. Cependant, après avoir parcouru une grande quntité de fichiers originaux (oui !
+parce que le serveur est en panne !) fichier par fichier, nous commençons à nous rendre compte que la zone observée est en effet un petit
+"rectangle" plus ou moins centré à l'origine, puisque les RA, s'ils sont grands, ne decendent jamais en dessous de 358 et s'ils sont petits,
+ne montent jamais au dessus de 2 !! C'est bien une piège qu'il faut évider lors du traitement.  
+  
+Pour constater ce que nous pensons, la solution simple est de mettre les grands RA en opposés. Plus concrètement, une fois qu'une valeur de RA 
+dépasse 180, on lui enlève 360. Du coup les RA ne résident après ce traitement que dans l'intervalle [-2, 2] et le partitionnement sera
+beaucoup plus compact qu'avant (plus de cases vides en plein milieu). 
+Dans notre codes, il y a trois endroitsqu'il faut modifier, notamment à la lecture et à l'écriture 
+des valeurs des observations.
+```scala
+  def convertirEnZone(input: Array[String]): Zone = {
+    val ra = input(PetaSkySchema.s_ra).toDouble
+    val decl = input(PetaSkySchema.s_decl).toDouble
+    Zone(if (ra > 180) ra-360 else ra, if (ra > 180) ra-360 else ra, decl, decl)
+  }
+  
+    def garderSeulementRaDecl (input: Array[String]): Array[Double] = {
+    val ra = input(PetaSkySchema.s_ra).toDouble
+    Array(if (ra > 180) ra-360 else ra, input(PetaSkySchema.s_decl).toDouble)
+  }
+
+  def dansQuellesCasesVaisJe (ra: Double, decl: Double, grille: Grille):
+  List[(String, String)] = {
+    grille.Cases.filter(verifierAppartenance(grille, _, ra, decl)).map(_.nom)
+      .map((_, (if (ra < 0) ra+360 else ra).toString + "," + decl.toString)).toList
+  }
+```
+A noter qu'à la sortie, si un RA est négatif, on lui rend la somme de 360.
+
+### 2. Comment définir "être proche d'une case voisine" d'un point et comment l'affecter à plusieurs cases dans un contexte RDD ?
+Il comvient de définir d'abord une distance
+```scala
+  val proximiteHorizontale = 0.1
+  val proximiteVerticale = 0.1
+```
+
+Si une observation est plus proche de la frontière avec une autre case que cette distance,
+elle doit alors appartenir à lui aussi. La difficulté d'effectuer l'affectation d'un point à plusieurs cases 
+consiste principalement en ceci : à la sortie,
+une valeur d'observation peut avoir plusieurs clés. C'est donc ici on doit faire recours à la structure `pairRDD` est appliquer la méthode
+`flatMap`.
+```scala
+  def reformerEnPairRDD (inputDir: String, sc: SparkContext, grille: Grille)
+  : RDD[(String, String)] =
+    sc.textFile(inputDir)
+      .map(_.split(",").map(_.trim))
+      .map(garderSeulementRaDecl)
+      .flatMap(arr => dansQuellesCasesVaisJe(arr(0),arr(1), grille))
+```
+Cette méthode peut, grossièrement dit, "aplatir une liste de listes" en une liste. Du coup, quand une observation appartient à 
+plusieurs cases, elle forme une liste dont chaque élément est composé d'une clé différente est de sa valeur. La méthode `flatMap`
+fait en sorte à décomposer cette liste est rendre chacun de ses éléments en tant qu'élément de la nouvelle PairRDD.
+
+
+### 3. Quand une case est trop remplie, que faire ?
+C'est la partie la plus fatigante du TP. Ici on prend le chemin le plus direct : on pose un seuil à chacune des cases, p. ex. 
+```scala
+  val maxObsDansUneCase = 10000
+```
+et met à sa disposition un compteur qui compte le nombre d'observations qui tombent dans elle. Une fois ce seuil atteint, on lui 
+affetera plus rien, même si les coordonnées d'un futur point peut convenir. Ensuite une nouvelle case des mêmes bords sera automatiquement
+construite et c'est elle qui prendra les observations dans son royaume.  
+  
+Avant, dans le fichier source `SparkTPApp5Partitionnement.scala` on n'a pas construit une scala `class` pour la case et on a simplement
+comparer chaque observation avec la grille en faisant une boucle `for` emboîtée. Or ici, évidemment la case joue un rôle beaucoup plus
+indépendant de manière qu'il mérite une telle structure. Juste pour nommer une raison, la création d'une nouvelle case, avec notre 
+technique de simple comparaison des observations avec deux séquences comme avant, n'est plus possible. En plus, la `class Grille` doit
+également devenir plus compliquer qui joue maintenant un rôle de "gestionnaire de cases".
+```scala
+
+
+
 
