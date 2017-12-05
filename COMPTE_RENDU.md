@@ -446,8 +446,11 @@ les instancier plus tard avec un `new`. Lorsqu'on a pris la deuxième manière a
 structure "non-`serializable`" et refuse d'exécuter le script. Bien que même d'après le bouquin 
 [Programming in Scala](https://www.amazon.fr/Programming-Scala-Martin-Odersky/dp/0981531644) de 
 [Martin Odersky](https://fr.wikipedia.org/wiki/Martin_Odersky), sauf besoin de l'utilisation de `pattern matching`, ces deux structures
-ne présentent aucune différence.
-
+ne présentent aucune différence.  
+  
+__Attention : dans le code source, le fichier `SparkTPApp6Extensions.scala` est une ancienne version de solutions de la partie l'extension. 
+Il ne sert à présent à rien.__  
+  
 ```scala
 import java.lang.Math._
 
