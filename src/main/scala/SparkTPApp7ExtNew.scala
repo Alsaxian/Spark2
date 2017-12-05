@@ -1,13 +1,12 @@
 import java.lang.Math._
 
 import TIW6RDDUtils.writePairRDDToHadoopUsingKeyAsFileName
-
-import scala.collection.mutable.{Buffer, ListBuffer}
+import scala.collection.immutable.List
+import scala.collection.mutable.ListBuffer
 import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.spark.rdd.RDD
 import schema.PetaSkySchema
 
-import scala.collection.immutable.List
 
 
 /**
