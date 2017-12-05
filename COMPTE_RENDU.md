@@ -239,7 +239,7 @@ Dans cette partie, on va répondre aux 3 questions :
   
 1. Quelle est la vraie géométrie astronomique est comment rendre notre partitionnement plus pertinent à cette géométrie ?
 2. Comment définir "être proche d'une case voisine" d'un point et comment l'affecter à plusieurs cases dans un contexte RDD ?
-3. Quand une case est trop remplie, que faire ?
+3. Partage des charges - quand une case est trop remplie, que faire ?
 
 ### 1. Quelle est la vraie géométrie astronomique est comment rendre notre partitionnement plus pertinent à cette géométrie ?
 La première partie de cette question est facile à répondre. Le système de coordonnées formé par RA et Decl c'est comme le shpère du globe :
@@ -322,7 +322,7 @@ plusieurs cases, elle forme une liste dont chaque élément est composé d'une c
 fait en sorte à décomposer cette liste est rendre chacun de ses éléments en tant qu'élément de la nouvelle PairRDD.
 
 
-### 3. Quand une case est trop remplie, que faire ?
+### 3. Partage des charges - quand une case est trop remplie, que faire ?
 C'est la partie la plus fatigante du TP. Ici on prend le chemin le plus direct : on pose un seuil à chacune des cases, p. ex. 
 ```scala
   val maxObsDansUneCase = 10000
